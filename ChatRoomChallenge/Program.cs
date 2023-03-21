@@ -1,5 +1,7 @@
 using ChatRoomChallenge.Data;
 using ChatRoomChallenge.Hubs;
+using ChatRoomChallenge.Models;
+using ChatRoomChallenge.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -17,11 +19,16 @@ namespace ChatRoomChallenge
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            //.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+            builder.Services.AddDefaultIdentity<ApplicationUser>()
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddRazorPages();
 
             builder.Services.AddSignalR();
+
+            builder.Services.AddControllersWithViews();
+
+            builder.Services.AddTransient<IChatroomRepository, ChatroomRepository>();
 
             var app = builder.Build();
 
@@ -46,7 +53,7 @@ namespace ChatRoomChallenge
             app.UseAuthorization();
 
             app.MapRazorPages();
-            app.MapHub<ChatRoom>("/chatroom");
+            app.MapHub<ChatRoomHub>("/chatroom");
 
             app.Run();
         }
