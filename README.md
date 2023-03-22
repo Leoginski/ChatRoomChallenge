@@ -13,7 +13,7 @@ Execute the following instructions to get the project running.
 1. Run the Web application
 
     ``dotnet run -p SimpleChatroom``
-1. Run the Worker application
+1. Run the Worker application in a new terminal
 
     ``dotnet run -p SimpleChatroom.Worker``    
 5. Access the local address
