@@ -1,5 +1,7 @@
+using MassTransit;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using SimpleChatroom.Consumer;
 using SimpleChatroom.Domain.Interfaces;
 using SimpleChatroom.Domain.Services;
 using SimpleChatroom.Hubs;
@@ -15,7 +17,8 @@ namespace SimpleChatroom
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+            var connectionString = builder.Configuration.GetConnectionString("ApplicationDbContext") ?? throw new InvalidOperationException("ApplicationDbContext string 'DefaultConnection' not found.");
+
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
             builder.Services.AddDatabaseDeveloperPageExceptionFilter();
@@ -29,6 +32,22 @@ namespace SimpleChatroom
             builder.Services.AddTransient<IChatroomService, ChatroomService>();
             builder.Services.AddTransient<ICommandService, CommandService>();
             builder.Services.AddTransient<IChatroomRepository, ChatroomRepository>();
+
+            var rabbit = builder.Configuration.GetConnectionString("RabbitMQ") ?? throw new InvalidOperationException("Connection string 'RabbitMQ' not found.");
+            builder.Services.AddMassTransit(c =>
+            {
+                c.AddConsumer<CommandResultConsumer>();
+
+                c.UsingRabbitMq((context, config) =>
+                {
+                    config.ReceiveEndpoint("simplechatroom-result", queue =>
+                    {
+                        queue.ConfigureConsumer<CommandResultConsumer>(context);
+                    });
+
+                    config.Host(rabbit);
+                });
+            });
 
             var app = builder.Build();
             // Configure the HTTP request pipeline.

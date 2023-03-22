@@ -16,14 +16,17 @@ namespace SimpleChatroom.Repository
 
         public async Task AddMessage(Message message)
         {
-            await _context.Messages.AddAsync(message);
+            await _context.Messages
+                .AddAsync(message);
+
             await _context.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<Message>> GetMessages()
         {
             return _context.Messages
-                .Include(x => x.User);
+                .Include(x => x.User)
+                .OrderBy(x => x.Date);
         }
     }
 }

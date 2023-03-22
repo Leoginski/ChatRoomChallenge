@@ -1,4 +1,4 @@
-namespace SimpleChatroom.Worker
+namespace WorkerService1
 {
     public class Worker : BackgroundService
     {

@@ -1,4 +1,5 @@
-﻿using SimpleChatroom.Domain.Interfaces;
+﻿using MassTransit;
+using SimpleChatroom.Domain.Interfaces;
 using SimpleChatroom.Domain.Models;
 using System.Text.RegularExpressions;
 
@@ -6,9 +7,11 @@ namespace SimpleChatroom.Domain.Services
 {
     public class CommandService : ICommandService
     {
+        private readonly IBus _bus;
 
-        public CommandService()
+        public CommandService(IBus bus)
         {
+            _bus = bus;
         }
 
         public async Task<Command?> ParseCommand(string message)
@@ -25,9 +28,11 @@ namespace SimpleChatroom.Domain.Services
             };
         }
 
-        public Task SendCommand(Command command)
+        public async Task SendCommand(Command command)
         {
-            throw new NotImplementedException();
+            var endpoint = await _bus.GetSendEndpoint(new Uri("queue:simplechatroom-command"));
+            
+            await endpoint.Send(command);
         }
     }
 }

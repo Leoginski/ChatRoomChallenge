@@ -1,7 +1,9 @@
 ﻿@page
 @using Microsoft.AspNetCore.Identity;
+@using SimpleChatroom.Domain.Interfaces;
 @inject UserManager<IdentityUser> userManager
 @inject SignInManager<IdentityUser> SignInManager
+@inject IChatroomService chatroomService
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -15,13 +17,18 @@
 @if (SignInManager.IsSignedIn(User))
 {
     <div id="messagearea" class="row">
-        <input id="userId" value="@userManager.GetUserId(User)" type="hidden"/>
+        <input id="userId" value="@userManager.GetUserId(User)" type="hidden" />
         <div>
             Joined as: <b><span id="username">@User.Identity.Name</span></b>
             <hr />
             <div class="row">
                 <div class="col-6">
-                    <ul id="messageList"></ul>
+                    <ul id="messageList">
+                        @foreach (var message in await chatroomService.GetMessages())
+                        {
+                            <li>@message.User.UserName says: @message.Text</li>
+                        }
+                    </ul>
                 </div>
             </div>
             <hr />
@@ -41,8 +48,8 @@ else
 <script src="~/js/signalr/dist/browser/signalr.js"></script>
 <script>
     var connection = new signalR.HubConnectionBuilder().withUrl("/chatroom").build();
-    var username = document.getElementById("username").innerText;
     var userid = document.getElementById("userId").value;
+    var username = document.getElementById("username").innerText;
 
     connection.on("ReceiveMessage", function (user, message) {
         var li = document.createElement("li");

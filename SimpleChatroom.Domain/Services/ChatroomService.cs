@@ -16,14 +16,20 @@ namespace SimpleChatroom.Domain.Services
 
         public async Task ProcessMessage(string userId, string messageText)
         {
-            var message = Message.Create(userId, messageText);
-
             var command = await _commandService.ParseCommand(messageText);
 
             if (command is null)
+            {
+                var message = Message.Create(userId, messageText);
                 await _repository.AddMessage(message);
+            }
             else
-                await _commandService.SendCommand(command);            
+                await _commandService.SendCommand(command);
+        }
+
+        public async Task<IEnumerable<Message>> GetMessages()
+        {
+            return await _repository.GetMessages();
         }
     }
 }

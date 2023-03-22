@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleChatroom", "SimpleChatroom\SimpleChatroom.csproj", "{BD4EA16C-8319-43C2-89E6-015875C57828}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleChatroom", "SimpleChatroom\SimpleChatroom.csproj", "{BD4EA16C-8319-43C2-89E6-015875C57828}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleChatroom.Infra", "SimpleChatroom.Infra\SimpleChatroom.Infra.csproj", "{87AD2E25-EE3B-46DC-8F02-3520592DE949}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleChatroom.Infra", "SimpleChatroom.Infra\SimpleChatroom.Infra.csproj", "{87AD2E25-EE3B-46DC-8F02-3520592DE949}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleChatroom.Domain", "SimpleChatroom.Domain\SimpleChatroom.Domain.csproj", "{8132D039-713B-4EE6-9458-1EC5A31EBD57}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleChatroom.Worker", "SimpleChatroom.Worker\SimpleChatroom.Worker.csproj", "{EDE93506-BDD2-4BEB-B3FF-B05818E46EC5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{8132D039-713B-4EE6-9458-1EC5A31EBD57}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8132D039-713B-4EE6-9458-1EC5A31EBD57}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8132D039-713B-4EE6-9458-1EC5A31EBD57}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDE93506-BDD2-4BEB-B3FF-B05818E46EC5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDE93506-BDD2-4BEB-B3FF-B05818E46EC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDE93506-BDD2-4BEB-B3FF-B05818E46EC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDE93506-BDD2-4BEB-B3FF-B05818E46EC5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -13,11 +13,11 @@ namespace SimpleChatroom.Hubs
             _service = service;
         }
 
-        public async Task SendMessage(string userId, string usernName, string messageText)
+        public async Task SendMessage(string userId, string userName, string messageText)
         {
             await _service.ProcessMessage(userId, messageText);
 
-            await Clients.All.SendAsync("ReceiveMessage", usernName, messageText);
+            await Clients.All.SendAsync("ReceiveMessage", userName, messageText);
         }
     }
 }

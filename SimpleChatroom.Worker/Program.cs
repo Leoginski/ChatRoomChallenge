@@ -1,3 +1,6 @@
+using MassTransit;
+using SimpleChatroom.Worker.Consumer;
+
 namespace SimpleChatroom.Worker
 {
     public class Program
@@ -5,9 +8,25 @@ namespace SimpleChatroom.Worker
         public static void Main(string[] args)
         {
             IHost host = Host.CreateDefaultBuilder(args)
-                .ConfigureServices(services =>
+                .ConfigureServices((hostContext, services) =>
                 {
-                    services.AddHostedService<Worker>();
+                    services.AddHttpClient();
+
+                    var connectionString = hostContext.Configuration.GetConnectionString("RabbitMQ") ?? throw new InvalidOperationException("Connection string 'RabbitMQ' not found.");
+                    services.AddMassTransit(c =>
+                    {
+                        c.AddConsumer<CommandConsumer>();
+
+                        c.UsingRabbitMq((context, config) =>
+                        {
+                            config.ReceiveEndpoint("simplechatroom-command", queue =>
+                            {
+                                queue.ConfigureConsumer<CommandConsumer>(context);
+                            });
+
+                            config.Host(connectionString);
+                        });
+                    });
                 })
                 .Build();
 

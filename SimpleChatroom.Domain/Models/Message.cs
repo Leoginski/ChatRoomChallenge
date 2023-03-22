@@ -16,13 +16,21 @@ namespace SimpleChatroom.Domain.Models
 
         public IdentityUser User { get; set; }
 
+        public DateTime Date { get; private set; }
+
         public static Message Create(string userId, string text)
         {
             return new Message
             {
                 UserId = userId,
-                Text = text
+                Text = text,
+                Date = DateTime.Now
             };
+        }
+
+        public virtual string GetUserName()
+        {
+            return this.User.UserName;
         }
     }
 }
