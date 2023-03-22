@@ -11,6 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleChatroom.Domain", "Si
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SimpleChatroom.Worker", "SimpleChatroom.Worker\SimpleChatroom.Worker.csproj", "{EDE93506-BDD2-4BEB-B3FF-B05818E46EC5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimpleChatroom.Tests", "SimpleChatroom.Tests\SimpleChatroom.Tests.csproj", "{EF9B777A-3849-4763-B7B8-F09A5A3C96B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{8CACEFE7-F94A-43A6-97F1-683C83DC1279}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{3796D573-81F2-49AA-8CB6-CE7A77082BF4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,9 +39,20 @@ Global
 		{EDE93506-BDD2-4BEB-B3FF-B05818E46EC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDE93506-BDD2-4BEB-B3FF-B05818E46EC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDE93506-BDD2-4BEB-B3FF-B05818E46EC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF9B777A-3849-4763-B7B8-F09A5A3C96B8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF9B777A-3849-4763-B7B8-F09A5A3C96B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF9B777A-3849-4763-B7B8-F09A5A3C96B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF9B777A-3849-4763-B7B8-F09A5A3C96B8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BD4EA16C-8319-43C2-89E6-015875C57828} = {3796D573-81F2-49AA-8CB6-CE7A77082BF4}
+		{87AD2E25-EE3B-46DC-8F02-3520592DE949} = {3796D573-81F2-49AA-8CB6-CE7A77082BF4}
+		{8132D039-713B-4EE6-9458-1EC5A31EBD57} = {3796D573-81F2-49AA-8CB6-CE7A77082BF4}
+		{EDE93506-BDD2-4BEB-B3FF-B05818E46EC5} = {3796D573-81F2-49AA-8CB6-CE7A77082BF4}
+		{EF9B777A-3849-4763-B7B8-F09A5A3C96B8} = {8CACEFE7-F94A-43A6-97F1-683C83DC1279}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D1BACE94-838E-45DB-A6CD-C5943084BAC0}

@@ -24,9 +24,12 @@ namespace SimpleChatroom.Repository
 
         public async Task<IEnumerable<Message>> GetMessages()
         {
-            return _context.Messages
+            var result = _context.Messages
                 .Include(x => x.User)
-                .OrderBy(x => x.Date);
+                .OrderByDescending(x => x.Date)
+                .Take(50);
+
+            return result.AsEnumerable().OrderBy(x => x.Date);
         }
     }
 }

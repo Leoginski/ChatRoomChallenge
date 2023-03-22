@@ -24,8 +24,4 @@
     <ProjectReference Include="..\SimpleChatroom.Infra\SimpleChatroom.Infra.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Extensions\" />
-  </ItemGroup>
-
 </Project>

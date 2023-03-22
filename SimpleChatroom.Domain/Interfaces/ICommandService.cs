@@ -1,4 +1,4 @@
-﻿using SimpleChatroom.Domain.Models;
+﻿using SimpleChatroom.Domain.Commands;
 
 namespace SimpleChatroom.Domain.Interfaces
 {
