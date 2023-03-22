@@ -9,7 +9,7 @@ Execute the following instructions to get the project running.
     ``docker-compose up -d``
 1. Create Database
 
-    ``dotnet ef database update``
+    ``dotnet ef -p SimpleChatroom database update``
 1. Run the Web application
 
     ``dotnet run -p SimpleChatroom``
